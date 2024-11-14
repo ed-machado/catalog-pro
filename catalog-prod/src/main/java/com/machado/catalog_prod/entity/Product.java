@@ -30,8 +30,7 @@ public class Product {
     @Positive
     private Double price;
 
-//    @NotNull
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    private Category category;
-
+    @NotNull
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Category category;
 }
