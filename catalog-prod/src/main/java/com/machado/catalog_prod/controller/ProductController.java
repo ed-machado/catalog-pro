@@ -6,10 +6,9 @@ import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("product")
@@ -22,5 +21,19 @@ public class ProductController {
     public ResponseEntity<String> createProduct(@Valid @RequestBody Product product) {
         this.productService.create(product);
         return ResponseEntity.status(HttpStatus.CREATED).body("Product saved");
+    }
+
+    @GetMapping("/read/{id}")
+    public ResponseEntity<Product> readProduct(@PathVariable Long id) {
+        Product product = this.productService.findById(id);
+        if (product == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        return ResponseEntity.ok(product);
+    }
+
+    @GetMapping("/read/all")
+    public ResponseEntity<List<Product>> readAllProduct() {
+        return ResponseEntity.status(HttpStatus.OK).body(this.productService.findAll());
     }
 }
