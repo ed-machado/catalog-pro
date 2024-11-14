@@ -4,8 +4,8 @@ import com.machado.catalog_prod.entity.Product;
 import com.machado.catalog_prod.repositories.ProductRepository;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -25,5 +25,23 @@ public class ProductService {
 
     public List<Product> findAll() {
         return productRepository.findAll();
+    }
+
+    @Transactional
+    public void update(@Valid Product product, Long id) {
+        if (!productRepository.existsById(id)) {
+            throw new RuntimeException("Product not found");
+        }
+        product.setId(id);
+        productRepository.save(product);
+    }
+
+    @Transactional
+    public void delete(Long id) {
+        try {
+            productRepository.deleteById(id);
+        } catch (Exception e) {
+            throw new RuntimeException("Product not found");
+        }
     }
 }
