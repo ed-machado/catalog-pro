@@ -10,24 +10,24 @@ import lombok.Setter;
 
 import java.util.List;
 
-@Getter @Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@Entity
-public class Category {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @NotNull
-    @Size(max = 255)
-    private String name;
-
-    private String description;
-
-    @NotNull
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Product> products;
-
-}
+//@Getter @Setter
+//@AllArgsConstructor
+//@NoArgsConstructor
+//@Entity
+//public class Category {
+//
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private Long id;
+//
+//    @NotNull
+//    @Size(max = 255)
+//    private String name;
+//
+//    private String description;
+//
+//    @NotNull
+//    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<Product> products;
+//
+//}
