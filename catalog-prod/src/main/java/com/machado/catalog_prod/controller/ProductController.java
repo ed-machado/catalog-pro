@@ -1,10 +1,14 @@
 package com.machado.catalog_prod.controller;
 
+import com.machado.catalog_prod.dto.ProductDTO;
+import com.machado.catalog_prod.dto.ProductRequest;
 import com.machado.catalog_prod.entity.Category;
 import com.machado.catalog_prod.entity.Product;
 import com.machado.catalog_prod.service.ProductService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,67 +23,51 @@ public class ProductController {
     private final ProductService productService;
 
     @PostMapping("/create")
-    public ResponseEntity<String> createProduct(@Valid @RequestBody Product product) {
-        this.productService.create(product);
-        return ResponseEntity.status(HttpStatus.CREATED).body("Product saved");
+    public ResponseEntity<String> createProduct(@Valid @RequestBody ProductRequest productRequest) {
+        productService.create(productRequest);
+        return ResponseEntity.status(HttpStatus.CREATED).body("Product created successfully.");
     }
 
     @GetMapping("/read/{id}")
-    public ResponseEntity<Product> readProduct(@PathVariable Long id) {
-        Product product = this.productService.findById(id);
-        if (product == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
-        return ResponseEntity.ok(product);
+    public ResponseEntity<ProductDTO> readProduct(@PathVariable Long id) {
+        ProductDTO productDTO = productService.findById(id);
+        return ResponseEntity.ok(productDTO);
     }
 
     @GetMapping("/read/byName")
-    public ResponseEntity<List<Product>> readProductByName(@RequestParam String name) {
-        List<Product> productList = this.productService.findByName(name);
-        if (productList == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
+    public ResponseEntity<List<ProductDTO>> readProductByName(@RequestParam String name) {
+        List<ProductDTO> productList = productService.findByName(name);
         return ResponseEntity.ok(productList);
     }
 
     @GetMapping("/read/byPrice")
-    public ResponseEntity<List<Product>> readProductByPrice(@RequestParam Double price) {
-        List<Product> productList = this.productService.findByPrice(price);
-        if (productList == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
+    public ResponseEntity<List<ProductDTO>> readProductByPrice(@RequestParam Double price) {
+        List<ProductDTO> productList = productService.findByPrice(price);
         return ResponseEntity.ok(productList);
     }
 
-    @GetMapping("/read/byCategory")
-    public ResponseEntity<List<Product>> readProductByCategory(@RequestParam Long categoryId) {
-        List<Product> productList = this.productService.findByCategory(categoryId);
-        if (productList == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
+    @GetMapping("/read/byCategoryName")
+    public ResponseEntity<List<ProductDTO>> readProductByCategoryName(@RequestParam String categoryName) {
+        List<ProductDTO> productList = productService.findByCategory(categoryName);
         return ResponseEntity.ok(productList);
     }
 
     @GetMapping("/read/all")
-    public ResponseEntity<List<Product>> readAllProduct() {
-        return ResponseEntity.status(HttpStatus.OK).body(this.productService.findAll());
+    public ResponseEntity<Page<ProductDTO>> readAllProduct(Pageable pageable) {
+        Page<ProductDTO> productList = productService.findAll(pageable);
+        return ResponseEntity.ok(productList);
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<String> updateProduct(@PathVariable Long id, @Valid @RequestBody Product product) {
-        if (productService.findById(id) == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
-        productService.update(product, id);
-        return ResponseEntity.status(HttpStatus.OK).body("Product updated");
+    public ResponseEntity<String> updateProduct(@PathVariable Long id, @Valid @RequestBody ProductRequest productRequest) {
+        productService.update(id, productRequest);
+        return ResponseEntity.status(HttpStatus.OK).body("Product updated successfully.");
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteProduct(@PathVariable Long id) {
-        if (this.productService.findById(id) == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
         productService.delete(id);
-        return ResponseEntity.status(HttpStatus.OK).body("Product deleted");
+        return ResponseEntity.status(HttpStatus.OK).body("Product deleted successfully.");
     }
 }
+

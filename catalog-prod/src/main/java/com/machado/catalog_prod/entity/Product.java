@@ -30,7 +30,7 @@ public class Product {
     @Positive
     private Double price;
 
-    @NotNull
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
+    @JoinColumn(name = "category_id", nullable = false)
     private Category category;
 }
