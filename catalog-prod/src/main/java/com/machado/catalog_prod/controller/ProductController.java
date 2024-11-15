@@ -1,5 +1,6 @@
 package com.machado.catalog_prod.controller;
 
+import com.machado.catalog_prod.entity.Category;
 import com.machado.catalog_prod.entity.Product;
 import com.machado.catalog_prod.service.ProductService;
 import jakarta.validation.Valid;
@@ -30,6 +31,33 @@ public class ProductController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         return ResponseEntity.ok(product);
+    }
+
+    @GetMapping("/read/byName")
+    public ResponseEntity<List<Product>> readProductByName(@RequestParam String name) {
+        List<Product> productList = this.productService.findByName(name);
+        if (productList == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        return ResponseEntity.ok(productList);
+    }
+
+    @GetMapping("/read/byPrice")
+    public ResponseEntity<List<Product>> readProductByPrice(@RequestParam Double price) {
+        List<Product> productList = this.productService.findByPrice(price);
+        if (productList == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        return ResponseEntity.ok(productList);
+    }
+
+    @GetMapping("/read/byCategory")
+    public ResponseEntity<List<Product>> readProductByCategory(@RequestParam Long categoryId) {
+        List<Product> productList = this.productService.findByCategory(categoryId);
+        if (productList == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        return ResponseEntity.ok(productList);
     }
 
     @GetMapping("/read/all")
