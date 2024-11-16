@@ -1,33 +1,58 @@
-<div class="container">
-  <div class="row">
-    <div class="col-lg-4"></div>
+<!-- login.component.html -->
+<div class="login-container">
+  <div class="login-box">
+    <div class="login-card">
+      <!-- Logo/Image Section -->
+      <div class="image-section">
+        <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/111.webp" alt="Nature" />
+        <div class="overlay"></div>
+      </div>
 
-    <div class="col-lg-4 center top">
-      <div class="card">
-        <div class="bg-image hover-overlay" mdbRipple rippleColor="light">
-          <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/111.webp" class="img-fluid" />
-          <a href="#!">
-            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15)"></div>
-          </a>
-        </div>
-        <div class="card-body">
+      <!-- Form Section -->
+      <div class="form-section">
+        <h2>Welcome Back</h2>
+
+        <!-- Username Input -->
+        <div class="form-group">
           <mdb-form-control>
-            <input mdbInput type="text" id="user" class="form-control" [(ngModel)]="user" />
-            <label mdbLabel class="form-label" for="user">User</label>
+            <input
+              mdbInput
+              type="text"
+              id="user"
+              class="form-control"
+              [(ngModel)]="user"
+            />
+            <label mdbLabel class="form-label" for="user">Username</label>
           </mdb-form-control>
-          <br />
+        </div>
+
+        <!-- Password Input -->
+        <div class="form-group password-group">
           <mdb-form-control>
-            <input mdbInput type="password" id="password" class="form-control" [(ngModel)]="password" />
+            <input
+              mdbInput
+              [type]="showPassword ? 'text' : 'password'"
+              id="password"
+              class="form-control"
+              [(ngModel)]="password"
+            />
             <label mdbLabel class="form-label" for="password">Password</label>
           </mdb-form-control>
-          <br />
-          <button type="button" class="btn btn-primary btn-rounded" mdbRipple (click)="login()">
-            Login
+          <button class="password-toggle" (click)="togglePassword()">
+            <i class="fas" [class.fa-eye]="!showPassword" [class.fa-eye-slash]="showPassword"></i>
           </button>
         </div>
+
+        <!-- Login Button -->
+        <button
+          type="button"
+          class="btn btn-primary btn-rounded w-100"
+          mdbRipple
+          (click)="login()"
+        >
+          Login
+        </button>
       </div>
     </div>
-
-    <div class="col-lg-4"></div>
   </div>
 </div>

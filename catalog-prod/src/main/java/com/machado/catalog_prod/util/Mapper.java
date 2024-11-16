@@ -36,11 +36,18 @@ public class Mapper {
         return product;
     }
 
+    public static CategoryDTO toCategoryDTO(Category category) {
+        CategoryDTO categoryDTO = new CategoryDTO();
+        categoryDTO.setId(category.getId());
+        categoryDTO.setName(category.getName());
+        categoryDTO.setDescription(category.getDescription());
+        return categoryDTO;
+    }
+
     public static Category toCategory(CategoryRequest categoryRequest) {
         Category category = new Category();
         category.setName(categoryRequest.getName());
         category.setDescription(categoryRequest.getDescription());
         return category;
     }
-
 }

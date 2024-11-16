@@ -2,8 +2,6 @@ package com.machado.catalog_prod.controller;
 
 import com.machado.catalog_prod.dto.ProductDTO;
 import com.machado.catalog_prod.dto.ProductRequest;
-import com.machado.catalog_prod.entity.Category;
-import com.machado.catalog_prod.entity.Product;
 import com.machado.catalog_prod.service.ProductService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -18,6 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("product")
 @AllArgsConstructor
+@CrossOrigin("*")
 public class ProductController {
 
     private final ProductService productService;

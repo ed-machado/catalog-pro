@@ -9,8 +9,6 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class ProductRequest {
-
-    @NotNull
     @Size(max = 255)
     private String name;
 
@@ -20,6 +18,5 @@ public class ProductRequest {
     @Positive
     private Double price;
 
-    @NotNull
     private CategoryRequest category;
 }

@@ -23,6 +23,26 @@
             <label mdbLabel class="form-label" for="user">Description</label>
           </mdb-form-control>
           <br />
+
+          <div>
+
+            @if (product.category == null) {
+              <button type="button" class="btn btn-primary btn-rounded" mdbRipple (click)="readCategory()">
+                Categories
+              </button>
+            } @else {
+
+              <span class="text-primary">Category: {{product.category.name}}</span>
+
+              <button type="button" class="btn btn-warning btn-rounded" mdbRipple (click)="readCategory()">
+                Change category
+              </button>
+            }
+
+          </div>
+
+          <br>
+
           <button type="button" class="btn btn-primary btn-rounded" mdbRipple (click)="save()">
             Save
           </button>
@@ -32,3 +52,20 @@
 
   </div>
 </div>
+
+<ng-template #modalCategoriesRead>
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Create</h5>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modalRef.close()"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <app-categorieslist [hideButtons]="true"
+      (return)="returnCategory($event)"
+    ></app-categorieslist>
+  </div>
+</ng-template>
