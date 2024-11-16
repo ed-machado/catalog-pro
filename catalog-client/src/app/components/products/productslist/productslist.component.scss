@@ -1,0 +1,219 @@
+// Variables
+$primary: #6366f1;
+$primary-hover: #4f46e5;
+$danger: #ef4444;
+$danger-hover: #dc2626;
+$background: #f8fafc;
+$surface: #ffffff;
+$border: #e2e8f0;
+$text: #1e293b;
+$text-light: #64748b;
+
+.products-container {
+  padding: 2rem;
+  background: $background;
+  min-height: 100vh;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+
+  .title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: $text;
+  }
+
+  .btn-create {
+    background: $primary;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 999px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.2s;
+
+    &:hover {
+      background: $primary-hover;
+      transform: translateY(-1px);
+    }
+
+    i {
+      font-size: 0.875rem;
+    }
+  }
+}
+
+.card {
+  background: $surface;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
+  overflow: hidden;
+
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+
+    th, td {
+      padding: 1rem 1.5rem;
+      text-align: left;
+    }
+
+    th {
+      background: $surface;
+      color: $text-light;
+      font-weight: 500;
+      font-size: 0.875rem;
+      border-bottom: 1px solid $border;
+
+      &.actions-header {
+        text-align: center;
+      }
+    }
+
+    td {
+      color: $text;
+      border-bottom: 1px solid $border;
+
+      &:first-child {
+        font-family: monospace;
+        color: $text-light;
+      }
+    }
+
+    tr:hover {
+      td {
+        background: rgba(99, 102, 241, 0.02);
+      }
+    }
+  }
+}
+
+.category-tag {
+  background: rgba(99, 102, 241, 0.1);
+  color: $primary;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.875rem;
+}
+
+.no-category {
+  color: $text-light;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+
+  .action-btn {
+    border: none;
+    background: none;
+    padding: 0.5rem;
+    border-radius: 8px;
+    transition: all 0.2s;
+    font-size: 1rem;
+
+    i {
+      transition: all 0.2s;
+    }
+
+    &.edit {
+      color: $primary;
+
+      &:hover {
+        background: rgba($primary, 0.1);
+        transform: translateY(-1px);
+
+        i {
+          transform: scale(1.1);
+        }
+      }
+    }
+
+    &.delete {
+      color: $danger;
+
+      &:hover {
+        background: rgba($danger, 0.1);
+        transform: translateY(-1px);
+
+        i {
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
+}
+
+.modal-container {
+  .modal-header {
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid $border;
+
+    h2 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: $text;
+      margin: 0;
+    }
+
+    .close-btn {
+      border: none;
+      background: none;
+      color: $text-light;
+      padding: 0.5rem;
+      border-radius: 8px;
+      transition: all 0.2s;
+
+      &:hover {
+        background: rgba($text-light, 0.1);
+        color: $text;
+      }
+    }
+  }
+
+  .modal-content {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .products-container {
+    padding: 1rem;
+  }
+
+  .header {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+
+    .btn-create {
+      justify-content: center;
+    }
+  }
+
+  .card {
+    overflow-x: auto;
+
+    table {
+      th, td {
+        padding: 0.75rem 1rem;
+
+        &:not(:first-child) {
+          min-width: 120px;
+        }
+      }
+    }
+  }
+}
