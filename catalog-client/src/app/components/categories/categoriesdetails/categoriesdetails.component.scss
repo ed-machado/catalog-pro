@@ -1,0 +1,185 @@
+// Variables
+$primary: #6366f1;
+$primary-hover: #4f46e5;
+$danger: #ef4444;
+$danger-hover: #dc2626;
+$success: #22c55e;
+$success-hover: #16a34a;
+$secondary: #64748b;
+$secondary-hover: #475569;
+$background: #f8fafc;
+$surface: #ffffff;
+$border: #e2e8f0;
+$text: #1e293b;
+$text-light: #64748b;
+$error: #ef4444;
+$transition: all 0.2s ease-in-out;
+
+// Mixins
+@mixin card-shadow {
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.05),
+    0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+@mixin hover-scale {
+  transition: $transition;
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+}
+
+// Main Container
+.details-container {
+  min-height: 100%;
+  width: 100%;
+  padding: 2rem;
+  background: $background;
+}
+
+// Form Card
+.form-card {
+  background: $surface;
+  border-radius: 16px;
+  @include card-shadow;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}
+
+// Form Groups
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: $text;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  input, textarea {
+    padding: 0.75rem 1rem;
+    border: 1px solid $border;
+    border-radius: 12px;
+    font-size: 1rem;
+    color: $text;
+    background: $surface;
+    transition: $transition;
+
+    &:focus {
+      outline: none;
+      border-color: $primary;
+      box-shadow: 0 0 0 3px rgba($primary, 0.1);
+    }
+
+    &.error {
+      border-color: $error;
+    }
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  .error-message {
+    font-size: 0.9rem;
+    color: $error;
+    font-weight: 500;
+  }
+}
+
+// Form Actions
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2rem;
+
+  button {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+    font-weight: 600;
+    border: none;
+    transition: $transition;
+
+    i {
+      font-size: 1rem;
+    }
+
+    &:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+  }
+
+  .btn-primary {
+    background: $primary;
+    color: white;
+    @include hover-scale;
+
+    &:hover:not(:disabled) {
+      background: $primary-hover;
+    }
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: $text;
+    border: 1px solid $border;
+    @include hover-scale;
+
+    &:hover {
+      background: rgba($text, 0.05);
+      color: $text;
+    }
+  }
+}
+
+// Animations
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+.error-message {
+  animation: shake 0.4s ease-in-out;
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .details-container {
+    padding: 1rem;
+  }
+
+  .form-card {
+    padding: 1.5rem;
+    border-radius: 12px;
+  }
+
+  .form-actions {
+    flex-direction: column-reverse;
+    gap: 1rem;
+
+    button {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+}

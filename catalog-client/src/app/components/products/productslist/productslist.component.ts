@@ -25,6 +25,7 @@ export class ProductslistComponent implements OnInit {
   modalRef!: MdbModalRef<any>;
 
   productService = inject(ProductService);
+  isDarkMode: boolean = false;
 
   constructor() {
     const productNew = history.state.productNew;

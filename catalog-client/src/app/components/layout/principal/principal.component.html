@@ -1,2 +1,95 @@
-<app-menu></app-menu>
-<router-outlet></router-outlet>
+<!-- Modern Sidebar Layout -->
+<div class="layout-wrapper" [class.dark-mode]="isDarkMode">
+  <!-- Sidebar -->
+  <aside class="sidebar" [class.collapsed]="isSidebarCollapsed">
+    <!-- Brand -->
+    <div class="sidebar-brand">
+      <i class="fas fa-cube brand-icon"></i>
+      <span class="brand-text" [class.hidden]="isSidebarCollapsed">Catalog-PRO</span>
+    </div>
+
+    <!-- Navigation Links -->
+    <nav class="sidebar-nav">
+      <ul class="nav-list">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">
+            <i class="fas fa-chart-line"></i>
+            <span [class.hidden]="isSidebarCollapsed">Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/admin/products" routerLinkActive="active">
+            <i class="fas fa-box-open"></i>
+            <span [class.hidden]="isSidebarCollapsed">Products</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/admin/categories" routerLinkActive="active">
+            <i class="fas fa-folder"></i>
+            <span [class.hidden]="isSidebarCollapsed">Categories</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/admin/orders" routerLinkActive="active">
+            <i class="fas fa-shopping-cart"></i>
+            <span [class.hidden]="isSidebarCollapsed">Orders</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/admin/customers" routerLinkActive="active">
+            <i class="fas fa-users"></i>
+            <span [class.hidden]="isSidebarCollapsed">Customers</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- Main Content Area -->
+  <main class="main-content">
+    <!-- Top Header -->
+    <header class="top-header">
+      <!-- Sidebar Toggle Button -->
+      <button class="sidebar-toggle" (click)="toggleSidebar()" title="Toggle sidebar">
+        <i class="fas" [class.fa-angle-left]="!isSidebarCollapsed" [class.fa-angle-right]="isSidebarCollapsed"></i>
+      </button>
+
+      <div class="search-box">
+        <i class="fas fa-search search-icon"></i>
+        <input
+          type="text"
+          placeholder="Search..."
+          [(ngModel)]="searchQuery"
+          (keyup.enter)="performSearch()"
+        >
+      </div>
+
+      <div class="header-actions">
+        <button class="theme-toggle" (click)="toggleTheme()" title="Toggle theme">
+          <i class="fas" [class.fa-sun]="isDarkMode" [class.fa-moon]="!isDarkMode"></i>
+        </button>
+
+        <div class="notifications-container">
+          <button class="action-button" (click)="toggleNotifications()" title="Notifications">
+            <i class="fas fa-bell"></i>
+            <span *ngIf="unreadNotifications" class="notification-badge">
+              {{ unreadNotifications }}
+            </span>
+          </button>
+        </div>
+
+        <div class="user-profile">
+          <span class="username">{{ userName }}</span>
+          <button class="logout-button" (click)="logout()">
+            <i class="fas fa-sign-out-alt"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Page Content -->
+    <div class="page-content">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+</div>

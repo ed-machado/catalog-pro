@@ -38,4 +38,10 @@ export class ProductService {
   readProductById(id: number): Observable<Product> {
     return this.http.get<Product>(`${this.apiUrl}/read/${id}`);
   }
+
+  readProductByCategoryName(categoryName: string): Observable<Product[]> {
+    const params = new HttpParams().set('categoryName', categoryName);
+    return this.http.get<Product[]>(`${this.apiUrl}/read/byCategoryName`, { params });
+  }
 }
+

@@ -3,6 +3,8 @@ import Swal from 'sweetalert2';
 import { MdbModalModule, MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { Category } from '../../../models/category';
 import { CategoryService } from '../../../services/categories.service';
+import { ProductService } from '../../../services/product.service';
+import { Product } from '../../../models/product';
 import { CategoriesdetailsComponent } from '../categoriesdetails/categoriesdetails.component';
 import { CommonModule } from '@angular/common';
 
@@ -15,6 +17,7 @@ import { CommonModule } from '@angular/common';
 })
 export class CategorieslistComponent implements OnInit {
   categories: Category[] = [];
+  products: Product[] = [];
   totalPages = 0;
   currentPage = 0;
   categoryEdit = new Category(0, "", "");
@@ -27,6 +30,7 @@ export class CategorieslistComponent implements OnInit {
   modalRef!: MdbModalRef<any>;
 
   categoryService = inject(CategoryService);
+  productService = inject(ProductService);
 
   constructor() {
     let categoryNew = history.state.categoryNew;
@@ -66,6 +70,24 @@ export class CategorieslistComponent implements OnInit {
           confirmButtonText: 'Ok',
         });
         console.error('Error loading categories', err);
+      },
+    });
+  }
+
+  readProductsByCategory(categoryName: string): void {
+    this.productService.readProductByCategoryName(categoryName).subscribe({
+      next: (products) => {
+        this.products = products;
+        console.log('Products:', this.products);
+      },
+      error: (err) => {
+        Swal.fire({
+          title: 'Error loading products',
+          text: 'An error occurred while loading products.',
+          icon: 'error',
+          confirmButtonText: 'Ok',
+        });
+        console.error('Error loading products', err);
       },
     });
   }

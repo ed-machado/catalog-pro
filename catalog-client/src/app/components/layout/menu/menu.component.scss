@@ -1,0 +1,246 @@
+// Variables
+$primary-blue: #1a73e8;
+$primary-dark: #1557b0;
+$light-blue: #e8f0fe;
+$white: #ffffff;
+$gray-100: #f8f9fa;
+$gray-200: #e9ecef;
+$gray-300: #dee2e6;
+$gray-600: #6c757d;
+$gray-800: #343a40;
+$dark-bg: #1e1e1e;
+$shadow-color: rgba(0, 0, 0, 0.1);
+
+// Main Navigation
+.main-nav {
+  background: $white;
+  box-shadow: 0 2px 4px $shadow-color;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+
+  &.dark-mode {
+    background: $dark-bg;
+    color: $white;
+
+    .nav-link, .action-button, .profile-button {
+      color: $white;
+      &:hover { background: rgba($white, 0.1); }
+    }
+  }
+}
+
+.nav-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.nav-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 64px;
+}
+
+// Brand & Logo
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+
+  .brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: $primary-blue;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-decoration: none;
+
+    i { color: $primary-blue; }
+  }
+}
+
+// Navigation Links
+.nav-links {
+  display: flex;
+  gap: 1rem;
+
+  .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    color: $gray-600;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: $light-blue;
+      color: $primary-blue;
+    }
+
+    &.active {
+      background: $light-blue;
+      color: $primary-blue;
+      font-weight: 500;
+    }
+
+    i { font-size: 1.1rem; }
+  }
+}
+
+// Search Box
+.search-container {
+  margin-right: 1rem;
+
+  .search-box {
+    display: flex;
+    align-items: center;
+    background: $gray-100;
+    border-radius: 24px;
+    padding: 0.5rem 1rem;
+    width: 300px;
+
+    .search-icon {
+      color: $gray-600;
+      margin-right: 0.5rem;
+    }
+
+    .search-input {
+      border: none;
+      background: none;
+      outline: none;
+      width: 100%;
+      color: $gray-800;
+
+      &::placeholder {
+        color: $gray-600;
+      }
+    }
+  }
+}
+
+// Action Buttons
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  .action-button {
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 50%;
+    color: $gray-600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: $light-blue;
+      color: $primary-blue;
+    }
+  }
+}
+
+// Profile Section
+.profile-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  border-radius: 24px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: $light-blue;
+  }
+
+  .profile-image {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .profile-name {
+    color: $gray-800;
+    font-weight: 500;
+  }
+}
+
+// Dropdowns
+.dropdown {
+  position: relative;
+
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: $white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px $shadow-color;
+    min-width: 200px;
+    margin-top: 0.5rem;
+
+    .dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1rem;
+      color: $gray-800;
+      text-decoration: none;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: $light-blue;
+        color: $primary-blue;
+      }
+    }
+  }
+}
+
+// Mobile Styles
+@media (max-width: 768px) {
+  .desktop-only {
+    display: none;
+  }
+
+  .mobile-nav {
+    background: $white;
+    padding: 1rem;
+    border-top: 1px solid $gray-200;
+
+    .mobile-nav-link {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1rem;
+      color: $gray-800;
+      text-decoration: none;
+      border-radius: 6px;
+
+      &:hover, &.active {
+        background: $light-blue;
+        color: $primary-blue;
+      }
+    }
+  }
+
+  .mobile-overlay {
+    position: fixed;
+    top: 64px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+  }
+}

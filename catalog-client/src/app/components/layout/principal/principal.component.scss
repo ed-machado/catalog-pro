@@ -1,0 +1,224 @@
+// Variables
+$sidebar-width: 250px;
+$sidebar-collapsed-width: 70px;
+$transition-speed: 0.3s;
+$primary-color: #2c3e50;
+$secondary-color: #34495e;
+$text-color: #ecf0f1;
+$hover-color: #3498db;
+
+// Layout
+.layout-wrapper {
+  display: flex;
+  min-height: 100vh;
+
+  &.dark-mode {
+    background-color: #1a1a1a;
+    color: $text-color;
+  }
+}
+
+// Sidebar
+.sidebar {
+  width: $sidebar-width;
+  background: linear-gradient(180deg, $primary-color, darken($primary-color, 15%));
+  background-color: $primary-color;
+  transition: width $transition-speed ease;
+  position: relative;
+  overflow-x: hidden;
+
+  &.collapsed {
+    width: $sidebar-collapsed-width;
+
+    .brand-text,
+    .nav-link span {
+      display: none;
+    }
+  }
+
+  &:hover {
+    width: $sidebar-width;
+
+    .brand-text,
+    .nav-link span {
+      display: inline;
+    }
+  }
+}
+
+// Sidebar Brand
+.sidebar-brand {
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  color: $text-color;
+
+  .brand-icon {
+    font-size: 1.5rem;
+    margin-right: 1rem;
+  }
+
+  .brand-text {
+    font-size: 1.2rem;
+    font-weight: bold;
+    white-space: nowrap;
+  }
+}
+
+// Navigation
+.sidebar-nav {
+  padding: 1rem 0;
+
+  .nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .nav-item {
+    margin: 0.5rem 0;
+  }
+
+  .nav-link {
+    display: flex;
+    align-items: center;
+    padding: 0.8rem 1.5rem;
+    color: $text-color;
+    text-decoration: none;
+    transition: background-color $transition-speed ease;
+
+    i {
+      font-size: 1.2rem;
+      min-width: 2rem;
+    }
+
+    span {
+      margin-left: 0.5rem;
+      white-space: nowrap;
+    }
+
+    &:hover {
+      background-color: $hover-color;
+    }
+
+    &.active {
+      background-color: $secondary-color;
+      border-left: 4px solid $hover-color;
+    }
+  }
+}
+
+// Main Content
+.main-content {
+  flex: 1;
+  background-color: #f5f6fa;
+
+  .dark-mode & {
+    background-color: #2d2d2d;
+  }
+}
+
+// Top Header
+.top-header {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  .dark-mode & {
+    background-color: #333;
+    color: $text-color;
+  }
+
+  .sidebar-toggle {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    color: inherit;
+
+    &:hover {
+      color: $hover-color;
+    }
+  }
+}
+
+// Search Box
+.search-box {
+  position: relative;
+  margin: 0 1rem;
+
+  input {
+    padding: 0.5rem 0.5rem 0.5rem 2rem;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+    width: 200px;
+
+    .dark-mode & {
+      background-color: #444;
+      border-color: #555;
+      color: $text-color;
+    }
+  }
+
+  .search-icon {
+    position: absolute;
+    left: 0.7rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+  }
+}
+
+// Header Actions
+.header-actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: inherit;
+
+    &:hover {
+      color: $hover-color;
+    }
+  }
+}
+
+// Notifications
+.notifications-container {
+  position: relative;
+
+  .notification-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: #e74c3c;
+    color: white;
+    border-radius: 50%;
+    padding: 0.2rem 0.5rem;
+    font-size: 0.8rem;
+  }
+}
+
+// User Profile
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  .username {
+    font-weight: 500;
+  }
+}
+
+// Page Content
+.page-content {
+  padding: 2rem;
+}
