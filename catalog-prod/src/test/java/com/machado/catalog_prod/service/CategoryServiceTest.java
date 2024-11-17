@@ -167,4 +167,27 @@ class CategoryServiceTest {
 
         assertTrue(result.isEmpty());
     }
+
+    @Test
+    void testFindAll_NoCategories() {
+        Pageable pageable = PageRequest.of(0, 10);
+        Page<Category> categories = new PageImpl<>(List.of());
+
+        when(categoryRepository.findAll(pageable)).thenReturn(categories);
+
+        Page<CategoryDTO> result = categoryService.findAll(pageable);
+
+        assertTrue(result.isEmpty());
+    }
+
+    @Test
+    void testFindByName_NoMatches() {
+        String name = "NonExistentCategory";
+
+        when(categoryRepository.findByNameContainingIgnoreCase(name)).thenReturn(List.of());
+
+        List<CategoryDTO> result = categoryService.findByName(name);
+
+        assertTrue(result.isEmpty());
+    }
 }

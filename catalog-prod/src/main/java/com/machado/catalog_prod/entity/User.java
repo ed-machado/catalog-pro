@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.List;
 
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -15,6 +16,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
 
 @Setter @Getter
 @Entity
@@ -23,7 +25,10 @@ public class User implements UserDetails{
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
+	@NotBlank @NonNull
 	private String username;
+	@NotBlank @NonNull
 	private String password;
 	@Getter
     private String role;
