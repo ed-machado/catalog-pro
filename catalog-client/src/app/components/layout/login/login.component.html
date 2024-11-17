@@ -1,58 +1,100 @@
-<!-- login.component.html -->
-<div class="login-container">
-  <div class="login-box">
-    <div class="login-card">
-      <!-- Logo/Image Section -->
-      <div class="image-section">
-        <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/111.webp" alt="Nature" />
-        <div class="overlay"></div>
+<div class="container">
+  <div class="login-register-container">
+    <!-- Login Form -->
+    <div *ngIf="!isRegisterMode">
+      <h2>Login</h2>
+      <!-- Error Message -->
+      <div class="alert alert-danger" *ngIf="errorMessage" style="margin-bottom: 1rem;">
+        {{ errorMessage }}
+      </div>
+      <!-- Username Input -->
+      <div class="form-group">
+        <mdb-form-control>
+          <input
+            mdbInput
+            type="text"
+            id="user"
+            class="form-control"
+            [(ngModel)]="loginData.username"
+          />
+          <label mdbLabel class="form-label" for="user">Username</label>
+        </mdb-form-control>
       </div>
 
-      <!-- Form Section -->
-      <div class="form-section">
-        <h2>Welcome Back</h2>
-
-        <!-- Username Input -->
-        <div class="form-group">
-          <mdb-form-control>
-            <input
-              mdbInput
-              type="text"
-              id="user"
-              class="form-control"
-              [(ngModel)]="user"
-            />
-            <label mdbLabel class="form-label" for="user">Username</label>
-          </mdb-form-control>
-        </div>
-
-        <!-- Password Input -->
-        <div class="form-group password-group">
-          <mdb-form-control>
-            <input
-              mdbInput
-              [type]="showPassword ? 'text' : 'password'"
-              id="password"
-              class="form-control"
-              [(ngModel)]="password"
-            />
-            <label mdbLabel class="form-label" for="password">Password</label>
-          </mdb-form-control>
-          <button class="password-toggle" (click)="togglePassword()">
-            <i class="fas" [class.fa-eye]="!showPassword" [class.fa-eye-slash]="showPassword"></i>
-          </button>
-        </div>
-
-        <!-- Login Button -->
-        <button
-          type="button"
-          class="btn btn-primary btn-rounded w-100"
-          mdbRipple
-          (click)="login()"
-        >
-          Login
+      <!-- Password Input -->
+      <div class="form-group password-group">
+        <mdb-form-control>
+          <input
+            mdbInput
+            [type]="showPassword ? 'text' : 'password'"
+            id="password"
+            class="form-control"
+            [(ngModel)]="loginData.password"
+          />
+          <label mdbLabel class="form-label" for="password">Password</label>
+        </mdb-form-control>
+        <button class="password-toggle" (click)="togglePassword()">
+          <i class="fas" [class.fa-eye]="!showPassword" [class.fa-eye-slash]="showPassword"></i>
         </button>
       </div>
+
+      <!-- Login Button -->
+      <button class="btn btn-primary" (click)="login()">Login</button>
+      <button class="btn btn-secondary" (click)="isRegisterMode = true">Register</button>
+    </div>
+
+    <!-- Register Form -->
+    <div *ngIf="isRegisterMode">
+      <h2>Register</h2>
+      <!-- Error Message -->
+      <div class="alert alert-danger" *ngIf="errorMessage" style="margin-bottom: 1rem;">
+        {{ errorMessage }}
+      </div>
+      <!-- Username Input -->
+      <div class="form-group">
+        <mdb-form-control>
+          <input
+            mdbInput
+            type="text"
+            id="registerUser"
+            class="form-control"
+            [(ngModel)]="registerData.username"
+          />
+          <label mdbLabel class="form-label" for="registerUser">Username</label>
+        </mdb-form-control>
+      </div>
+
+      <!-- Password Input -->
+      <div class="form-group password-group">
+        <mdb-form-control>
+          <input
+            mdbInput
+            [type]="showPassword ? 'text' : 'password'"
+            id="registerPassword"
+            class="form-control"
+            [(ngModel)]="registerData.password"
+          />
+          <label mdbLabel class="form-label" for="registerPassword">Password</label>
+        </mdb-form-control>
+      </div>
+
+      <!-- Confirm Password Input -->
+      <div class="form-group password-group">
+        <mdb-form-control>
+          <input
+            mdbInput
+            [type]="showPassword ? 'text' : 'password'"
+            id="confirmPassword"
+            class="form-control"
+            [(ngModel)]="registerData.confirmPassword"
+          />
+          <label mdbLabel class="form-label" for="confirmPassword">Confirm Password</label>
+        </mdb-form-control>
+      </div>
+
+      <!-- Register Button with click handler -->
+      <button class="btn btn-primary" (click)="register()">Register</button>
+      <button class="btn btn-secondary" (click)="isRegisterMode = false">Back to Login</button>
     </div>
   </div>
 </div>

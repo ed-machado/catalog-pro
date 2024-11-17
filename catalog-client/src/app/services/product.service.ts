@@ -11,7 +11,7 @@ export class ProductService {
 
   http = inject(HttpClient);
 
-  private readonly apiUrl = 'http://localhost:8080/product';
+private readonly apiUrl = 'http://backend:8080/product';
 
   constructor() { }
 
