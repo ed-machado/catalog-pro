@@ -99,12 +99,15 @@ ng serve
 │   └── main/
 │       ├── java/
 │       │   └── com/machado/catalog_prod/
+│       │       ├── auth/        # Login "DTO"
 │       │       ├── config/      # Configuration classes
 │       │       ├── controller/  # REST controllers
 │       │       ├── dto/         # Data transfer objects
 │       │       ├── entity/      # JPA entities
+│       │       ├── exception/   # Custom exceptions and handlers
 │       │       ├── repository/  # Data repositories
 │       │       └── service/     # Business logic
+│       │       └── util/        # Utility classes
 │       └── resources/
 │           └── application.properties
 ```
