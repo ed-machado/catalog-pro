@@ -44,13 +44,15 @@ A full-stack web application for managing products and categories with authentic
 
 ### Clone the repository:
 ```bash
-git clone [repository-url]
-cd product-catalog-system
+git clone https://github.com/ed-machado/catalog-pro/
+cd catalog-pro/catalog-prod
+mvn clean install -DskipTests
+cd ..
 ```
 
 ### Run with Docker Compose:
 ```bash
-docker-compose up -d
+docker-compose up --build
 ```
 
 The development server will be available at [http://localhost:4200](http://localhost:4200).
@@ -139,8 +141,14 @@ The application implements JWT-based authentication with the following features:
 The application uses the following environment variables:
 
 ```bash
-SPRING_DATASOURCE_URL=jdbc:mysql://mysql-db:3306/catalog_db
-SPRING_DATASOURCE_USERNAME=root
-SPRING_DATASOURCE_PASSWORD=admin
+# spring.datasource.url=jdbc:mysql://localhost:3306/catalog_db LOCAL
+spring.datasource.url=jdbc:mysql://mysql-db:3306/catalog_db
+spring.datasource.username=root
+spring.datasource.password=admin
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.jpa.show-sql=true
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
+spring.jpa.properties.javax.persistence.validation.mode=auto
 ```
 
