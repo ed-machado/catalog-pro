@@ -7,6 +7,7 @@ import { MdbRippleModule } from 'mdb-angular-ui-kit/ripple';
 import { LoginService } from '../../../auth/login.service';
 import { Login } from '../../../auth/login';
 import { CommonModule } from '@angular/common';
+import Swal from 'sweetalert2';
 
 interface RegisterData {
   username: string;
@@ -47,11 +48,20 @@ export class LoginComponent {
           this.loginService.addToken(token);
           this.router.navigate(['/admin/products']);
         } else {
-          console.log('Invalid login');
+          Swal.fire({
+            icon: 'error',
+            title: 'Login Failed',
+            text: 'Invalid login credentials. Please try again.',
+          });
         }
       },
       error: (err) => {
-        console.log(err);
+        console.error('Login error:', err);
+        Swal.fire({
+          icon: 'error',
+          title: 'Login Error',
+          text: err.error?.message || 'An error occurred during login. Please try again.',
+        });
       }
     });
   }
@@ -92,18 +102,33 @@ export class LoginComponent {
             confirmPassword: ''
           };
 
-          alert('Registration successful! You can now login.');
-          this.login();
+          Swal.fire({
+            icon: 'success',
+            title: 'Registration Successful',
+            text: 'You can now login.',
+          }).then(() => {
+            this.login();
+          });
         }
       },
       error: (err) => {
         console.error('Registration error:', err);
         this.errorMessage = err.error?.message || 'Registration failed. Please try again.';
-      }
-    });
-  }
+        Swal.fire({
+          icon: 'error',
+          title: 'Registration Failed',
+          text: this.errorMessage,
+          });
+        }
+      });
+    }
 
-  togglePassword() {
-    this.showPassword = !this.showPassword;
+    togglePassword() {
+      const passwordField = document.getElementById('password') as HTMLInputElement;
+      if (passwordField.type === 'password') {
+        passwordField.type = 'text';
+      } else {
+        passwordField.type = 'password';
+      }
+    }
   }
-}
