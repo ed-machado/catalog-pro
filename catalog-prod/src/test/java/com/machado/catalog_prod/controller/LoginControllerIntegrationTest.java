@@ -29,7 +29,7 @@ class LoginControllerIntegrationTest {
 
     @BeforeEach
     public void setup() {
-        loginRepository.deleteAll(); // Clear the repository before each test
+        loginRepository.deleteAll();
         User user = new User();
         user.setUsername("admin");
         user.setPassword(passwordEncoder.encode("password"));

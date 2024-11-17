@@ -33,7 +33,7 @@ public class ProductControllerIntegrationTest {
 
     @BeforeEach
     public void setUp() throws Exception {
-        // Ensure the user exists in the database
+        
         if (!loginRepository.existsByUsername("admin")) {
             User user = new User();
             user.setUsername("admin");
@@ -42,7 +42,7 @@ public class ProductControllerIntegrationTest {
             loginRepository.save(user);
         }
 
-        // Perform login to get the token
+        
         Login login = new Login();
         login.setUsername("admin");
         login.setPassword("password");
