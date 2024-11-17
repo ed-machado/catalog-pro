@@ -9,7 +9,7 @@ import { Category } from '../models/category';
 })
 export class CategoryService {
   http = inject(HttpClient);
-private readonly apiUrl = 'http://backend:8080/category';
+private readonly apiUrl = 'http://localhost:8080/category';
 
   readAllCategories(page: number, size: number): Observable<Page<Category>> {
     const params = new HttpParams().set('page', page).set('size', size);

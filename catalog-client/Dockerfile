@@ -1,13 +1,19 @@
-# Etapa de construção
-FROM node:18 AS build
-WORKDIR /app
-COPY package*.json ./
-RUN npm install
-COPY . .
-RUN npm run build -- --configuration production --aot
+FROM node:18
 
-# Etapa de servidor de produção
-FROM nginx:alpine
-COPY --from=build /app/dist/catalog-client /usr/share/nginx/html
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+# Definir diretório de trabalho
+WORKDIR /app
+
+# Copiar apenas package.json e package-lock.json
+COPY package*.json ./
+
+# Instalar dependências
+RUN npm install
+
+# Copiar todo o código fonte
+COPY . .
+
+# Expor a porta que o ng serve utiliza
+EXPOSE 4200
+
+# Comando para iniciar a aplicação
+CMD ["npm", "start"]
