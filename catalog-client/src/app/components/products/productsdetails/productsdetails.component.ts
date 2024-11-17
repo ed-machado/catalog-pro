@@ -52,6 +52,8 @@ export class ProductsdetailsComponent {
 
   save() {
 
+    this.product.price = parseFloat(this.product.price.toString().replace(',', '.'));
+
     if(this.product.id > 0) {
       this.productService.updateProduct(this.product.id, this.product).subscribe({
         next: (response) => {
