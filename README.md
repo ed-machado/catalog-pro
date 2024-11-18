@@ -1,12 +1,16 @@
 # Product Catalog System
+
+[![Build Status](https://app.travis-ci.com/ed-machado/catalog-pro.svg?token=riyep1FzgaSfuizH4NY2&branch=master)](https://app.travis-ci.com/ed-machado/catalog-pro)
+
 A full-stack web application for managing products and categories with authentication and authorization.
 
 ## 🚀 Features
 - **User authentication and authorization** with JWT
 - **Product management** (CRUD operations)
 - **Category management** (CRUD operations)
-- **Responsive design** with dark mode support
+- **Responsive design**
 - **Docker containerization** for easy deployment
+- **Continuous Integration** with Travis CI
 
 ## 🛠️ Technologies Used
 
@@ -33,6 +37,7 @@ A full-stack web application for managing products and categories with authentic
 - **Docker**
 - **Docker Compose**
 - **Nginx**
+- **Travis CI** for Continuous Integration
 
 ## 📋 Prerequisites
 - **Docker** and **Docker Compose**
