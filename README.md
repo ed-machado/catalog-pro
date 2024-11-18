@@ -46,7 +46,7 @@ A full-stack web application for managing products and categories with authentic
 ```bash
 git clone https://github.com/ed-machado/catalog-pro/
 cd catalog-pro/catalog-prod
-mvn clean install -DskipTests
+mvn clean install
 cd ..
 ```
 
@@ -139,19 +139,3 @@ The application implements JWT-based authentication with the following features:
 - `POST /category/create` - Create new category
 - `PUT /category/update/{id}` - Update category
 - `DELETE /category/delete/{id}` - Delete category
-
-## 🖥️ Environment Variables
-The application uses the following environment variables:
-
-```bash
-# spring.datasource.url=jdbc:mysql://localhost:3306/catalog_db LOCAL
-spring.datasource.url=jdbc:mysql://mysql-db:3306/catalog_db
-spring.datasource.username=root
-spring.datasource.password=admin
-spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
-spring.jpa.show-sql=true
-spring.jpa.hibernate.ddl-auto=update
-spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
-spring.jpa.properties.javax.persistence.validation.mode=auto
-```
-
